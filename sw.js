@@ -6,9 +6,11 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
       await cache.addAll(LOCAL_ASSETS);
-      // no-cors: resposta opaca serve para <script>; falha do CDN não bloqueia a instalação.
+      // no-cors: resposta opaca serve para <script>. cache.add rejeita opacas, então fetch + put.
+      // Falha do CDN não bloqueia a instalação.
       try {
-        await cache.add(new Request(TAILWIND_CDN, { mode: 'no-cors' }));
+        const request = new Request(TAILWIND_CDN, { mode: 'no-cors' });
+        await cache.put(request, await fetch(request));
       } catch (_) {}
     })
   );
