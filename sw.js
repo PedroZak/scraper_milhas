@@ -1,4 +1,4 @@
-const CACHE_NAME = 'milhas-app-v1';
+const CACHE_NAME = 'milhas-app-v2';
 const TAILWIND_CDN = 'https://cdn.tailwindcss.com';
 const LOCAL_ASSETS = ['./', './index.html', './app.js', './manifest.json', './icons/icon-192.png', './icons/icon-512.png'];
 
